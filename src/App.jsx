@@ -11,6 +11,11 @@ function App() {
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
+  const [cart, setCart] = useState([]);
+  const addToCartHandeler =(props) => {
+    const newCart=[...cart,props.data.id];
+    setCart(newCart);
+  }; 
   return (
     <>
       <div className="">
@@ -18,8 +23,19 @@ function App() {
           <Header></Header>
         </header>
 
-        <main className=" grid grid-cols-3 gap-5  mx-16 mt-6">
-          {data.map(d => <Card key={d.id}  data={d}></Card>)}
+        <main className="grid grid-cols-4 mt-5">
+          <div className="col-span-3">
+            <div className="grid grid-cols-3 gap-5">
+              {data.map((d) => (
+                <Card key={d.id} data={d} addToCartHandeler={addToCartHandeler}></Card>
+              ))}
+            </div>
+          </div>
+          <div className="text-center">
+            <h2>Order Summary</h2>
+            <h1>Selected Item : {cart.length}</h1>
+
+          </div>
         </main>
       </div>
     </>

@@ -1,8 +1,10 @@
 import React from "react";
 
 const Card = (props) => {
-    console.log(props.data);
-    const {category,name,img,seller,price,ratings}=props.data;
+    // console.log(props.data);
+    const {name,img,seller,price,ratings}=props.data;
+    const addToCartHandeler=props.addToCartHandeler;
+    
   return (
     <div>
       <div className="card w-80 bg-base-100 shadow-xl" style={{'height': '500px'}}>
@@ -20,7 +22,7 @@ const Card = (props) => {
           <p>Manufacturer : {seller}</p>
           <p>Rating : {ratings}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Add to Cart</button>
+            <button onClick={()=>addToCartHandeler(props)} className="btn btn-primary">Add to Cart</button>
           </div>
         </div>
       </div>
