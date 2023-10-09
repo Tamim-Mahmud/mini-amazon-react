@@ -11,7 +11,7 @@ const CardCalculate = (props) => {
     console.log(totalPrice);
     
     return (
-        <div className="text-left bg-slate-300 p-5 rounded-md">
+        <div className="sticky top-20 text-left bg-slate-300 p-5 rounded-md">
             <h1 className="text-center mb-5 text-2xl font-bold">Order Summary</h1>
             <h2>Selected Items : {cart.length}</h2>
             <h2>Total Price: {totalPrice} </h2>
