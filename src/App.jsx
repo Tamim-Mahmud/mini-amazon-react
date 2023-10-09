@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Headers/Header";
 import Card from "./components/Cards/Card";
+import CardCalculate from "./components/Cards/CardCalculate";
 
 function App() {
   const [data, setData] = useState([]);
@@ -13,7 +14,7 @@ function App() {
   }, []);
   const [cart, setCart] = useState([]);
   const addToCartHandeler =(props) => {
-    const newCart=[...cart,props.data.id];
+    const newCart=[...cart,props.data];
     setCart(newCart);
   }; 
   return (
@@ -32,9 +33,7 @@ function App() {
             </div>
           </div>
           <div className="text-center">
-            <h2>Order Summary</h2>
-            <h1>Selected Item : {cart.length}</h1>
-
+                <CardCalculate cart= {cart}></CardCalculate>
           </div>
         </main>
       </div>
