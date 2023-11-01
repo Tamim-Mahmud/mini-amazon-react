@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/Headers/Header";
 import Card from "../components/Cards/Card";
 import CardCalculate from "../components/Cards/CardCalculate";
-import { addToDb, getShoppingCart } from "../components/Utilities/fakedb";
+import { addToDb, deleteShoppingCart, getShoppingCart } from "../components/Utilities/fakedb";
 import { Outlet } from "react-router-dom";
 
 function Shop() {
@@ -54,7 +54,10 @@ function Shop() {
     addToDb(data.id);
   };
   // ***********for load data from local storage;**********
-
+  const deleteCart=()=>{
+    setCart([]);
+    deleteShoppingCart();
+}
   return (
     <>
       <div className="max-w-7xl mx-auto">
@@ -73,7 +76,7 @@ function Shop() {
             </div>
           </div>
           <div className="text-center">
-            <CardCalculate cart={cart}></CardCalculate>
+            <CardCalculate cart={cart} deleteCart={deleteCart}></CardCalculate>
           </div>
         </main>
         
