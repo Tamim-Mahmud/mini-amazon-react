@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
+import { deleteShoppingCart } from '../Utilities/fakedb';
 
-const CardCalculate = (props) => {
+const CardCalculate = ({cart,deleteCart}) => {
     
-    const cart =props.cart;
-    console.log(cart)
+    // console.log(cart)
     let totalPrice=0 ,totalShippingCost=0,quantity=0;
     for(let product of cart){
         
@@ -12,7 +13,7 @@ const CardCalculate = (props) => {
         totalPrice = totalPrice+((product.price)*product.quantity);
     }
     const tax=((totalPrice*7)/100);
-    console.log(cart);
+    // console.log(cart);
     
     return (
         <div className="sticky top-20 text-left bg-slate-300 p-5 rounded-md">
@@ -22,6 +23,9 @@ const CardCalculate = (props) => {
             <h2>Total Shipping Charge : {totalShippingCost} </h2>
             <h2>Tax : {tax.toFixed(2)}</h2>
             <h2 className="text-center mb-5 text-2xl font-bold mt-4">Grand Total : {(totalPrice + totalShippingCost +tax).toFixed(2)}</h2>
+
+            <button className='btn btn-error  mb-3 w-full' onClick={deleteCart}>Clear Cart</button>
+            <button className='btn  btn-success w-full' >Proceed to checkout</button>
         </div>
     );
 };
