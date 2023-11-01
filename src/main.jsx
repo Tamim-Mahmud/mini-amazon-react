@@ -8,6 +8,7 @@ import Shop from "./Shop/Shop.jsx";
 import Order from "./Order/Order";
 import Home from "./Layout/Home";
 import cartProductLoaderData from "./Loaders/cartProductLoader";
+import Checkout from "./Checkout/Checkout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
         element: <Order />,
         loader: cartProductLoaderData,
       },
+      {
+        path: '/checkout',
+        element: <Checkout />,
+
+      }
     ],
   },
 ]);

@@ -4,7 +4,7 @@ import Header from "../components/Headers/Header";
 import Card from "../components/Cards/Card";
 import CardCalculate from "../components/Cards/CardCalculate";
 import { addToDb, deleteShoppingCart, getShoppingCart } from "../components/Utilities/fakedb";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function Shop() {
   // load data
@@ -76,7 +76,9 @@ function Shop() {
             </div>
           </div>
           <div className="text-center">
-            <CardCalculate cart={cart} deleteCart={deleteCart}></CardCalculate>
+            <CardCalculate cart={cart} deleteCart={deleteCart}>
+              <Link to={'/orders'}><button className='btn btn-error  mb-3 w-full'>Review Order</button></Link>
+            </CardCalculate>
           </div>
         </main>
         
