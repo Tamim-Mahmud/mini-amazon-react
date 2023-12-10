@@ -27,7 +27,7 @@ const Order = () => {
   };
 
   return (
-    <div className="text-black mt-20 max-w-7xl mx-auto">
+    <div className="text-black max-w-7xl mx-auto">
       <main className="grid grid-cols-4 mt-5 z-0 gap-7">
         <div className="col-span-3 ">
           <div className="grid grid-cols-1 gap-5">

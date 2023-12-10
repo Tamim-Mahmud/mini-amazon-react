@@ -15,13 +15,10 @@ const Header = () => {
             Order
           </Link>
           <Link className="mx-6" to="">
-            Order Review
-          </Link>
-          <Link className="mx-6" to="">
             Manage Inventory
           </Link>
-          <Link className="mx-6" to="">
-            Login
+          <Link className="mx-6" to="/login">
+            Login/SignUp
           </Link>
           
         </div>

@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-      <header className="fixed top-0 left-0 w-full bg-slate-400 z-10 ">
+      <header className="sticky top-0 left-0 w-full bg-slate-400 z-50 ">
         <Header></Header>
       </header>
       <Outlet />

@@ -61,7 +61,7 @@ function Shop() {
   return (
     <>
       <div className="max-w-7xl mx-auto">
-       <div className="mb-20"></div>
+       <div className=""></div>
         
         <main className="grid grid-cols-4 mt-5 z-0 gap-7">
           <div className="col-span-3 ">
