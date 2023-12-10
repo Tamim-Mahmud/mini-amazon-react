@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const { createUser, updateUsername } = useContext(AuthContext);
   const handleRegister = (e) => {
+    setError("");
+    setSuccess("");
     e.preventDefault();
     const username = e.target.username.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(username, email, password);
+    // console.log(createUser);
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        setSuccess("User Created SuccessFully");
+        updateUsername(username)
+          .then(() => {
+            console.log("username updated");
+          })
+          .catch((err) => {
+            setError(err.message);
+          });
+        e.target.reset();
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
@@ -26,6 +48,7 @@ const Register = () => {
               id="username"
               name="username"
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              required
             />
           </div>
           <div className="mb-4">
@@ -40,6 +63,7 @@ const Register = () => {
               id="email"
               name="email"
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              required
             />
           </div>
           <div className="mb-4">
@@ -54,7 +78,20 @@ const Register = () => {
               id="password"
               name="password"
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              required
             />
+          </div>
+          <div className="">
+            {error ? (
+              <p className="text-red-700 text-left mb-3">{error}</p>
+            ) : (
+              ""
+            )}
+            {success ? (
+              <p className="text-success text-left mb-3">{success}</p>
+            ) : (
+              ""
+            )}
           </div>
           <button
             type="submit"

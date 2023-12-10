@@ -1,24 +1,39 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Login = () => {
+    const [error, setError]=useState(null);
+  const { logIn } = useContext(AuthContext);
+  const handleLogin = (e) => {
+    setError("");
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    logIn(email, password).then(()=>{
+        console.log("login Successfull")
+    }).catch((err)=>{
+        setError(err.message);
+    })
+  };
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-96">
         <h2 className="text-2xl font-semibold mb-6">Login</h2>
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label
               htmlFor="username"
               className="block text-gray-600 text-sm font-medium mb-2"
             >
-              Username
+              Email
             </label>
             <input
-              type="text"
-              id="username"
-              name="username"
+              type="email"
+              id="email"
+              name="email"
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              placeholder="Please Enter Your Email "
             />
           </div>
           <div className="mb-4">
@@ -33,7 +48,13 @@ const Login = () => {
               id="password"
               name="password"
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              placeholder="Password"
             />
+          </div>
+          <div className="">
+            {
+                error ? <p className="text-error text-left mb-3">{error}</p>: ''
+            }
           </div>
           <button
             type="submit"
