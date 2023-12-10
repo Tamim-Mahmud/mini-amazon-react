@@ -13,6 +13,7 @@ import Login from "./components/Login.jsx";
 import ReviewItem from "./components/ReviewItem/ReviewItem.jsx";
 import Register from "./components/Register.jsx";
 import AuthProvider from "./providers/AuthProvider.jsx";
+import PrivateRoute from "./private route/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <Checkout />,
+        element: <PrivateRoute> <Checkout /> </PrivateRoute>,
       },
       {
         path: "/login",

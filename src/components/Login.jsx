@@ -1,20 +1,25 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 
 const Login = () => {
-    const [error, setError]=useState(null);
+  const [error, setError] = useState(null);
   const { logIn } = useContext(AuthContext);
+  const location =useNavigate();
+  console.log(location);
   const handleLogin = (e) => {
     setError("");
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    logIn(email, password).then(()=>{
-        console.log("login Successfull")
-    }).catch((err)=>{
+    logIn(email, password)
+      .then(() => {
+        location("/")
+        console.log("login Successfull");
+      })
+      .catch((err) => {
         setError(err.message);
-    })
+      });
   };
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
@@ -52,9 +57,7 @@ const Login = () => {
             />
           </div>
           <div className="">
-            {
-                error ? <p className="text-error text-left mb-3">{error}</p>: ''
-            }
+            {error ? <p className="text-error text-left mb-3">{error}</p> : ""}
           </div>
           <button
             type="submit"
