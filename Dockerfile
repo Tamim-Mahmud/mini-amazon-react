@@ -1,21 +1,16 @@
 FROM node:latest
 
-//sets a folder
-RUN mkdir -p /app/src
+RUN mkdir -p /app/
 
-//sets working directory
-WORKDIR /app/src
+WORKDIR /app/
 
-//copy the package
 COPY package.json .
 
-//runs npm install
 RUN npm install
 
 COPY . .
 
-//exposes port 3000
-EXPOSE 3000
+EXPOSE 8000
 
-//runs the comand npm start
+
 CMD ["npm", "run", "dev"]
